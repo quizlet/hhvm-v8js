@@ -16,7 +16,7 @@ namespace HPHP
             }
             virtual void* AllocateUninitialized(size_t length) { return malloc(length); }
             virtual void Free(void* data, size_t) { free(data); }
-    }
+    };
 
     class v8jsExtension: public Extension
     {
