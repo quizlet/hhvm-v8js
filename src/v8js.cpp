@@ -33,7 +33,7 @@ namespace HPHP
         ArrayBufferAllocator *allocator = new ArrayBufferAllocator();
         data->m_params = new v8::Isolate::CreateParams();
         data->m_params->array_buffer_allocator = allocator;
-        data->m_isolate = v8::Isolate::New(data->m_params);
+        data->m_isolate = v8::Isolate::New(*(data->m_params));
     }
 
     static Variant HHVM_METHOD(V8Js, executeString, const String& text)
