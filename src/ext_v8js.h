@@ -38,6 +38,7 @@ namespace HPHP
             void validate() const;
             static Class *getClass();
 
+            v8::Context *m_context;
             v8::Isolate *m_isolate;
             v8::Isolate::CreateParams *m_params;
             static Class *s_class;

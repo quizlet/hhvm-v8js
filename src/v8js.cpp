@@ -34,6 +34,7 @@ namespace HPHP
         data->m_params = new v8::Isolate::CreateParams();
         data->m_params->array_buffer_allocator = allocator;
         data->m_isolate = v8::Isolate::New(*(data->m_params));
+        data->m_context = v8::Context::New(data->m_isolate);
     }
 
     static Variant HHVM_METHOD(V8Js, executeString, const String& text)
@@ -46,10 +47,8 @@ namespace HPHP
         // Create a stack-allocated handle scope.
         v8::HandleScope handle_scope(isolate);
 
-        // Create a new context.
-        v8::Local<v8::Context> context = v8::Context::New(isolate);
-
         // Enter the context for compiling and running the script.
+        v8::Context *context = data->m_context;
         v8::Context::Scope context_scope(context);
 
         // Create a string containing the JavaScript source code.
