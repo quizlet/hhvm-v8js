@@ -39,7 +39,7 @@ namespace HPHP
             static Class *getClass();
 
             v8::Isolate *m_isolate;
-            ArrayBufferAllocator *m_allocator;
+            v8::Isolate::CreateParams *m_params;
             static Class *s_class;
             static const StaticString s_className;
     };
