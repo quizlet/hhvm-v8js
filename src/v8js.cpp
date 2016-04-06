@@ -27,10 +27,11 @@ namespace HPHP
         }
     }
 
-	static void HHVM_METHOD(V8Js, __construct)
-	{
+    static void HHVM_METHOD(V8Js, __construct)
+    {
         auto *data = Native::data<V8Js>(this_);
-        data->m_isolate = v8::Isolate::New();
+        data->m_allocator = new ArrayBufferAllocator();
+        data->m_isolate = v8::Isolate::New(data->m_allocator);
     }
 
     static Variant HHVM_METHOD(V8Js, executeString, const String& text)
